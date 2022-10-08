@@ -8,9 +8,6 @@ import Layout from "../components/Layout";
 import TabNavigation from "../components/TabNavigation";
 
 function Items() {
-  const [filter, setFilter] = useState("");
-  const [data, setData] = useState();
-
   const {
     data: categories,
     error: cError,
@@ -42,7 +39,7 @@ function Items() {
 
         <div className="container grid grid-cols-1 sm:grid-cols-5 gap-4">
           {/* Filters */}
-          <div className=" sm:col-span-1 w-full">
+          <div className="hidden sm:col-span-1 w-full">
             <header className="flex justify-between w-full">
               <h3 className="text-lg capitalize">Filters</h3>
               <button className="sm:hidden w-8 h-8 flex justify-center items-center bg-gray-100">
