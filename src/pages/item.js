@@ -13,7 +13,7 @@ function ItemDetail() {
 
   //const [data, setData] = useState();
   const { Id } = useParams();
-  const { data, error, loading } = useGetProductQuery(Id);
+  const { data, error, isLoading } = useGetProductQuery(Id);
 
   console.log(data);
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ function ItemDetail() {
     dispatch(addToCart(data[0]));
   };
 
-  if (loading)
+  if (isLoading)
     return (
       <div className="h-screen flex flex-col justify-center items-center">
         <p>"Loading"</p>
