@@ -1,55 +1,42 @@
 import React, { useEffect, useState } from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import Layout from "../components/Layout";
+import NotFound from "./notfound";
 import { useParams, useNavigate } from "react-router-dom";
+import { useGetProductQuery } from "../redux/shoesApi";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/cart";
 
-import allstar from "../images/all-star.jpg";
-
-const sh2 = {
-  Id: 2,
-  pName: "All Star Blue",
-  price: "700.00",
-  image: allstar,
-  pDesc:
-    "Browse and find the latest Converse footwear, clothing and accessories on Studio 88. Free delivery for orders over R500.00.   Converse All Star shoes have always been synonymous with an authentic culture and unique street style. Featuring a legendary range of styles.",
-};
-
 function ItemDetail() {
-  const [isLoading, setIsLoading] = useState(true);
+  //const [isLoading, setIsLoading] = useState(true);
 
-  const [data, setData] = useState();
+  //const [data, setData] = useState();
   const { Id } = useParams();
-  const cart = useSelector((state) => state.cart);
+  const { data, error, loading } = useGetProductQuery(Id);
+
+  console.log(data);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
+  /* useEffect(() => {
     fetch(`http://localhost:8080/api/products/${Id}`)
       .then((res) => res.json())
       .then((response) => {
         setData(response);
-
         setIsLoading(false);
-
-        console.log(response);
       })
       .catch((error) => {
         navigate("/notfound", { replace: true });
-
         console.log(error);
       });
-  }, [Id]);
+  }, [Id]); */
 
   const pushToCart = () => {
     dispatch(addToCart(data[0]));
-    console.log(cart);
   };
 
-  console.log(data);
-  if (isLoading)
+  if (loading)
     return (
       <div className="h-screen flex flex-col justify-center items-center">
         <p>"Loading"</p>

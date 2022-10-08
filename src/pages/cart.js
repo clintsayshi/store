@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Layout from "../components/Layout";
-
 import CartCard from "../components/DisplayCards/cartcard";
-
-import puma from "../images/puma.jpg";
-
-const sh1 = { pName: "Puma XTND", price: "1020.00", image: puma };
 
 function Cart() {
   const items = useSelector((state) => state.cart.cart);
@@ -24,8 +19,6 @@ function Cart() {
     }
     return () => {};
   }, [items]);
-
-  console.log(items);
 
   return (
     <Layout>

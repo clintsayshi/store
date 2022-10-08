@@ -1,36 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
-  addToCart,
   removeFromCart,
   incrementItemQty,
   decrementItemQty,
 } from "../../redux/cart";
 
-import crocs from "../../images/crocs.jpg";
-import allstar from "../../images/all-star.jpg";
-
-const sh2 = {
-  Id: 2,
-  pName: "All Star Blue",
-  price: "700.00",
-  image: allstar,
-  pDesc:
-    "Browse and find the latest Converse footwear, clothing and accessories on Studio 88. Free delivery for orders over R500.00.   Converse All Star shoes have always been synonymous with an authentic culture and unique street style. Featuring a legendary range of styles.",
-};
-
 const CartCard = ({ product }) => {
-  const { image, pName, price, qty } = product;
-  const [isLoading, setIsLoading] = useState(null);
-
+  const { image, pName, price, pId } = product;
   const dispatch = useDispatch();
-  /* const current = useSelector((state) => {
-    const cart = state.cart;
-    const current = cart.cart.filter((item) => item.Id !== product.Id);
-    return current[0];
-  });
-  console.log(current); */
 
   const incrementQty = () => {
     dispatch(incrementItemQty(product.pId));
@@ -56,7 +35,7 @@ const CartCard = ({ product }) => {
         </div>
 
         <div className="col-span-2 space-y-2">
-          <Link to="/">
+          <Link to={`/items/${pId}`}>
             <h2 className="font-medium">{pName}</h2>
           </Link>
           <p className="font-mono">R {price}</p>

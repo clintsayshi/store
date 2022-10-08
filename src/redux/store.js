@@ -1,13 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./cart";
-import contentReducer from "./actions";
 import { shoesApi } from "./shoesApi";
 import { setupListeners } from "@reduxjs/toolkit/query/react";
 
 const store = configureStore({
   reducer: {
     [shoesApi.reducerPath]: shoesApi.reducer,
-    content: contentReducer,
     cart: cartReducer,
   },
 
