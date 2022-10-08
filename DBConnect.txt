@@ -1,0 +1,16 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace SPOSales
+{
+    class DBConnect
+    {
+        private string con;
+        public  string myConnection()
+        {
+            con =  @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\201621340\Documents\SportieShoppingApplication.mdf;Integrated Security=True;Connect Timeout=30";
+            return con;
+        }
+    }
+}
