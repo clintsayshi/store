@@ -1,7 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Navigation() {
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+
+  const signIn = () => {
+    loginWithRedirect();
+  };
+  const signOut = () => {
+    logout({ returnTo: window.location.origin });
+  };
+
   return (
     <>
       <nav className="border-b-2 border-black">
@@ -14,9 +24,21 @@ function Navigation() {
             <li>
               <Link to="/cart">Cart</Link>
             </li>
-            <li>
-              <Link to="/profile">Sign in</Link>
-            </li>
+            {isAuthenticated && (
+              <>
+                <li>
+                  <Link to="/profile">Profile</Link>
+                </li>
+                <li>
+                  <button onClick={signOut}>Log out</button>
+                </li>
+              </>
+            )}
+            {!isAuthenticated && (
+              <li>
+                <button onClick={signIn}>Log in</button>
+              </li>
+            )}
           </ul>
         </div>
       </nav>

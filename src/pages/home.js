@@ -57,7 +57,7 @@ function Home() {
         <header className="flex justify-between">
           <h2 className="text-lg font-medium">Recents</h2>
 
-          <Link>See All</Link>
+          <Link to="/items">See All</Link>
         </header>
 
         <div className="grid grid-cols-4 items-center gap-4">
