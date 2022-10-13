@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { FiMenu, FiShoppingCart } from "react-icons/fi";
 
 function Navigation() {
   const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
@@ -39,6 +40,11 @@ function Navigation() {
                 <button onClick={signIn}>Log in</button>
               </li>
             )}
+            {/*  <li>
+              <button className="border">
+                <FiMenu />
+              </button>
+            </li> */}
           </ul>
         </div>
       </nav>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useGetCategoriesQuery, useGetProductsQuery } from "../redux/shoesApi";
 
@@ -8,6 +8,8 @@ import Layout from "../components/Layout";
 import TabNavigation from "../components/TabNavigation";
 
 function Items() {
+  const [counter, setCounter] = useState(0);
+
   const {
     data: categories,
     error: cError,

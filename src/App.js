@@ -6,6 +6,7 @@ import Items from "./pages/items";
 import ItemDetail from "./pages/item";
 import Login from "./pages/login";
 import NotFound from "./pages/notfound";
+import Profile from "./pages/profile";
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/test" element={<Test />} />
         <Route path="notfound" element={<NotFound />} />
         <Route
           path="*"
