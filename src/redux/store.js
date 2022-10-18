@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./cart";
+import shoppingReducer from "./shopping";
 import { shoesApi } from "./shoesApi";
 import { setupListeners } from "@reduxjs/toolkit/query/react";
 
@@ -7,6 +8,7 @@ const store = configureStore({
   reducer: {
     [shoesApi.reducerPath]: shoesApi.reducer,
     cart: cartReducer,
+    shopping: shoppingReducer,
   },
 
   // Adding the api middleware enables caching, invalidation, polling,

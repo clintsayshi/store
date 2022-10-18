@@ -1,22 +1,16 @@
-import React  from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useGetProductsQuery } from "../redux/shoesApi";
-
 import { MediumCard } from "../components/DisplayCards/mediumcard";
 import Layout from "../components/Layout";
-import TabNavigation from "../components/TabNavigation";
 
 function Home() {
-  const {
-    data: products,
-    error: pError,
-    loading: pLoading,
-  } = useGetProductsQuery();
+  const { data: products, error, isLoading } = useGetProductsQuery(1, 0);
+
+  console.log(error);
 
   return (
     <Layout>
-      <TabNavigation />
-
       <section className="py-6 space-y-4 container">
         <div className="relative flex flex-col items-center border-2 border-black justify-center h-96">
           {products && (
@@ -49,7 +43,7 @@ function Home() {
               </div>
             </>
           )}
-          {pLoading && <p>"Loading"</p>}
+          {isLoading && <p>"Loading"</p>}
         </div>
       </section>
 
@@ -66,9 +60,15 @@ function Home() {
               return <MediumCard key={index} product={item} />;
             })}
 
-          {pLoading && (
+          {isLoading && (
             <div className="h-full sm:col-span-3 flex justify-center items-center">
               <p>"Loading"</p>
+            </div>
+          )}
+
+          {error && (
+            <div className="h-full sm:col-span-3 flex justify-center items-center">
+              <p>"Error fetching data"</p>
             </div>
           )}
         </div>

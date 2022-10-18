@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import About from "./pages/about";
 import Cart from "./pages/cart";
 import Home from "./pages/home";
@@ -6,26 +6,18 @@ import Items from "./pages/items";
 import ItemDetail from "./pages/item";
 import Login from "./pages/login";
 import NotFound from "./pages/notfound";
-import Profile from "./pages/profile";
 
 function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/items" element={<Items />} />
-        <Route path="/items/:Id" element={<ItemDetail />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/test" element={<Test />} />
-        <Route path="notfound" element={<NotFound />} />
-        <Route
-          path="*"
-          element={<Navigate to="/notfound" replace />}
-          status={404}
-        />
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/items" element={<Items />} />
+        <Route exact path="/items/:Id" element={<ItemDetail />} />
+        <Route exact path="/about" element={<About />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/cart" element={<Cart />} />
+        <Route path="/*" element={<NotFound />} status={404} />
       </Routes>
     </div>
   );
