@@ -1,47 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useGetProductQuery } from "../redux/shoesApi";
+import { addToCart } from "../redux/cart";
 import BreadCrumb from "../components/BreadCrumb";
 import Layout from "../components/Layout";
 import NotFound from "./notfound";
-import { useParams, useNavigate } from "react-router-dom";
-import { useGetProductQuery } from "../redux/shoesApi";
-
-import { useDispatch } from "react-redux";
-import { addToCart } from "../redux/cart";
 
 function ItemDetail() {
-  //const [isLoading, setIsLoading] = useState(true);
-
-  //const [data, setData] = useState();
   const { Id } = useParams();
   const { data, error, isLoading } = useGetProductQuery(Id);
-
-  console.log(data);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  /* useEffect(() => {
-    fetch(`http://localhost:8080/api/products/${Id}`)
-      .then((res) => res.json())
-      .then((response) => {
-        setData(response);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        navigate("/notfound", { replace: true });
-        console.log(error);
-      });
-  }, [Id]); */
 
   const pushToCart = () => {
     dispatch(addToCart(data[0]));
   };
 
-  if (isLoading)
+  if (isLoading) {
     return (
       <div className="h-screen flex flex-col justify-center items-center">
         <p>"Loading"</p>
       </div>
     );
+  }
+
+  if (error) {
+    return <NotFound />;
+  }
 
   return (
     <Layout>
@@ -52,7 +37,7 @@ function ItemDetail() {
       <section className="">
         <div className="container sm:grid grid-cols-3 gap-12">
           {/* Item images */}
-          <div className="border col-span-2">
+          <div className=" col-span-2">
             <div className="">
               <img
                 className="block w-full aspect-square object-contain"
